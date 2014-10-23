@@ -2472,7 +2472,7 @@
                     </gmd:transferSize>
                   </xsl:for-each>
                   <xsl:choose>
-                    <xsl:when test="//stdorder//filedec">
+                    <xsl:when test="//stdorder//formcont">
                       <xsl:for-each select="//stdorder/digform">
                         <gmd:onLine>
                           <xsl:call-template name="CI_OnlineResource">
@@ -4322,7 +4322,7 @@
             </gco:CharacterString>
           </gmd:name>
         </xsl:for-each>
-        <xsl:for-each select="digtinfo/filedec">
+        <xsl:for-each select="digtinfo/formcont">
           <gmd:description>
             <gco:CharacterString>
               <xsl:value-of select="normalize-space(.)"/>
