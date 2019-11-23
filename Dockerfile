@@ -2,6 +2,7 @@ FROM tomcat:jdk11-openjdk
 
 ARG JYTHON_VERSION=2.7.1
 #ARG SAXONPE_VERSION=9-9-1-5J
+# Our license is restricted to 9.4
 ARG SAXONPE_VERSION=9-4-0-9J
 
 ENV TOMCAT_WEBAPPS_DIR=/usr/local/tomcat/webapps
