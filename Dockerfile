@@ -20,7 +20,7 @@ RUN cd /tmp \
   && unzip SaxonPE$SAXONPE_VERSION.zip
 
 # Copy source files
-COPY fgdc2iso/fgdc2iso/ $TOMCAT_WEBAPPS_DIR/fgdc2iso/
+COPY fgdc2iso/ $TOMCAT_WEBAPPS_DIR/fgdc2iso/
 
 # Move dependencies into lib
 RUN mv -t $TOMCAT_WEBAPPS_DIR/fgdc2iso/WEB-INF/lib/ \
