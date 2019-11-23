@@ -5,6 +5,10 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run:
+          name: setup saxon license
+          command: |-
+            echo "$SAXONPE_LICENSE" > saxon-license.lic
       - run: make build
       - run: make test
 
