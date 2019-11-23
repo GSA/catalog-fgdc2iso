@@ -3,7 +3,8 @@ FROM tomcat:jdk11-openjdk
 ARG JYTHON_VERSION=2.7.1
 #ARG SAXONPE_VERSION=9-9-1-5J
 ARG SAXONPE_VERSION=9-4-0-9J
-ARG TOMCAT_WEBAPPS_DIR=/usr/local/tomcat/webapps
+
+ENV TOMCAT_WEBAPPS_DIR=/usr/local/tomcat/webapps
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
