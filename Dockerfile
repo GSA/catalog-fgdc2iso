@@ -5,6 +5,8 @@ ARG JYTHON_VERSION=2.7.1
 # Our license is restricted to 9.4
 ARG SAXONPE_VERSION=9-4-0-9J
 
+# Use environment variable so it is accessible for one-off commands within the
+# container, like a jar build.
 ENV TOMCAT_WEBAPPS_DIR=/usr/local/tomcat/webapps
 
 # Install dependencies
@@ -17,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN cd /tmp \
   && wget -O jython-standalone-$JYTHON_VERSION.jar http://search.maven.org/remotecontent?filepath=org/python/jython-standalone/$JYTHON_VERSION/jython-standalone-$JYTHON_VERSION.jar
 
+# Download SaxonPE
 RUN cd /tmp \
   && wget http://www.saxonica.com/download/SaxonPE$SAXONPE_VERSION.zip \
   && unzip SaxonPE$SAXONPE_VERSION.zip
