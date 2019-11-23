@@ -20,16 +20,12 @@ RUN cd /tmp \
   && unzip SaxonPE$SAXONPE_VERSION.zip
 
 # Copy source files
-COPY fgdc2iso/ $TOMCAT_WEBAPPS_DIR/fgdc2iso/
+COPY fgdc2iso/ /app/
 
 # Move dependencies into lib
-RUN mv -t $TOMCAT_WEBAPPS_DIR/fgdc2iso/WEB-INF/lib/ \
+RUN mv -t /app/WEB-INF/lib/ \
   /tmp/jython-standalone-$JYTHON_VERSION.jar \
   /tmp/saxon9pe.jar
 
-#COPY fgdc2iso.war /usr/local/tomcat/webapps/
-#COPY tl_2009_us_uac00_url.shp.xml /tmp
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+# Build the .war file
+RUN jar --create --verbose --file $TOMCAT_WEBAPPS_DIR/fgdc2iso.war -C /app .
