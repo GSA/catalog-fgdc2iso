@@ -1,4 +1,3 @@
-# catalog-fgdc2iso
-[See Main Project](https://github.com/GSA/catalog-app)
+[![CircleCI](https://circleci.com/gh/GSA/catalog-fgdc2iso.svg?style=svg)](https://circleci.com/gh/GSA/catalog-fgdc2iso)
 
-<a href="http://drone.datagov.us/GSA/catalog-fgdc2iso"><img src="http://drone.datagov.us/api/badges/GSA/catalog-fgdc2iso/status.svg" /></a>
+# catalog-fgdc2iso
