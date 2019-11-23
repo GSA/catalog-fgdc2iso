@@ -28,7 +28,7 @@ POST a valid FGDC file to http://localhost:8080/fgdc2iso/ and you should receive
 the transformed ISO document. A 409 response code will be raised with errors if
 conversion fails. A sample FGDC file, `tl_2009_us_uac00_url.shp.xml`, is included.
 
-    curl http://0.0.0.0:8080/fgdc2iso/ -d @tl_2009_us_uac00_url.shp.xml
+    curl http://0.0.0.0:8080/fgdc2iso/ -d @test/fixtures/tl_2009_us_uac00_url.shp.xml
 
 
 ## translate.py
