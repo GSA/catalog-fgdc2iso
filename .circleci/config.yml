@@ -8,7 +8,7 @@ jobs:
       - run:
           name: setup saxon license
           command: |-
-            echo "$SAXONPE_LICENSE" > saxon-license.lic
+            printf "$SAXONPE_LICENSE" > saxon-license.lic
       - run: make build
       - run: make test
 

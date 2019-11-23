@@ -33,3 +33,19 @@ Run the tests. You must have a license in order to run the tests. Copy your
 license to `saxon-license.lic` and it will be mounted into the docker container.
 
     $ make test
+
+
+### Continuous Integration
+
+Because testing requires the license, you must add your license file as
+a secret. The easiest way to do this is to add a single environment variable,
+`SAXONPE_LICENSE` with your newline-encoded your license. During the CI build,
+you can write out the license with `printf`.
+
+Newline-encode your license (for LF systems) with GNU sed.
+
+   $ sed -z -e 's/\n/\\n/g' saxon-license.lic
+
+...or with BSD.
+
+   $ paste -s -d'!' saxon-license.lic | sed -e 's/!/\\n/g'
