@@ -1,0 +1,20 @@
+---
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: setup saxon license
+          command: |-
+            printf "$SAXONPE_LICENSE" > saxon-license.lic
+      - run: make build
+      - run: make test
+
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
