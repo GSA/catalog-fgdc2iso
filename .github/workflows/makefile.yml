@@ -27,7 +27,8 @@ jobs:
 
     - name: Copy saxon license to the license file
       run: 'echo "$VAULT_FGDC2ISO_SAXON_LICENSE" > saxon-license.lic'
-      env: VAULT_FGDC2ISO_SAXON_LICENSE: ${{ secrets.VAULT_FGDC2ISO_SAXON_LICENSE }}
+      env: 
+        VAULT_FGDC2ISO_SAXON_LICENSE: ${{ secrets.VAULT_FGDC2ISO_SAXON_LICENSE }}
 
     - name: Build and run tests
       run: make all
