@@ -25,6 +25,9 @@ jobs:
       with: 
         fetch-depth: '0'
 
+    - name: Copy saxon license to the license file
+      run: 'echo ${{ secrets.VAULT_FGDC2ISO_SAXON_LICENSE }} > saxon-license.lic'
+
     - name: Build and run tests
       run: make all
 
