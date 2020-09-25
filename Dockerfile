@@ -26,6 +26,7 @@ RUN cd /tmp \
 
 # Copy source files
 COPY fgdc2iso/ /app/
+COPY saxon-license.lic /etc/saxon-license.lic
 
 # Move dependencies into lib
 RUN mv -t /app/WEB-INF/lib/ \
