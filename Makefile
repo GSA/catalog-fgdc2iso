@@ -15,8 +15,8 @@ test: ##Build the test container and run bats test
 down: ##Bring down the TomCat server
 	docker-compose down
 
-all: clean build test down ##Clean, build containers, war file, bring up TomCat server, run the test, and bring the server down 
-
+all: ##Clean, build containers, war file, bring up TomCat server, run the test, and bring the server down
+	clean build test down
 
 # Output documentation for top-level targets
 # Thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
