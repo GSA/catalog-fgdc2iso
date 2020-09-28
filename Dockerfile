@@ -1,6 +1,6 @@
 FROM tomcat:jdk11-openjdk
 
-ARG JYTHON_VERSION=2.7.1
+ARG JYTHON_VERSION=2.7.2
 #ARG SAXONPE_VERSION=9-9-1-5J
 # Our license is restricted to 9.4
 ARG SAXONPE_VERSION=9-4-0-9J
@@ -17,11 +17,11 @@ RUN apt-get update && apt-get install -y \
 
 # Download Jython
 RUN cd /tmp \
-  && wget -O jython-standalone-$JYTHON_VERSION.jar http://search.maven.org/remotecontent?filepath=org/python/jython-standalone/$JYTHON_VERSION/jython-standalone-$JYTHON_VERSION.jar
+  && wget -O jython-standalone-$JYTHON_VERSION.jar https://search.maven.org/remotecontent?filepath=org/python/jython-standalone/$JYTHON_VERSION/jython-standalone-$JYTHON_VERSION.jar
 
 # Download SaxonPE
 RUN cd /tmp \
-  && wget http://www.saxonica.com/download/SaxonPE$SAXONPE_VERSION.zip \
+  && wget https://www.saxonica.com/download/SaxonPE$SAXONPE_VERSION.zip \
   && unzip SaxonPE$SAXONPE_VERSION.zip
 
 # Copy source files
