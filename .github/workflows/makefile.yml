@@ -35,7 +35,7 @@ jobs:
 
     - name: Bump version and push tag
       id: bump
-      if: github.ref == 'refs/heads/test-release' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/feature/fgdc2iso-standalone' && github.event_name == 'push'
       uses: anothrNick/github-tag-action@1.26.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -44,7 +44,7 @@ jobs:
         INITIAL_VERSION: 0.0.0
 
     - name: Release pushes to main
-      if: github.ref == 'refs/heads/test-release' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/feature/fgdc2iso-standalone' && github.event_name == 'push'
       uses: softprops/action-gh-release@v1
       with:
         files: |
