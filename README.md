@@ -2,7 +2,7 @@
 
 # catalog-fgdc2iso
 
-Web service provides transformations from FGDC/RSE to ISO 19115-2.
+Web service provides XML transformations from FGDC/RSE to ISO 19115-2 using the XSLT `./fgdc2iso/fgdcrse2iso19115-2.xslt`. 
 
 
 ## Usage
@@ -43,5 +43,3 @@ the docker container. The saxon license can be found in the [datagov-delopy](htt
 Run clean, build, test, and then bring the service down
 
     $ make all
-
-## Pushing updates to the master branch will run 'make all' and if successful will tag and relase a new version of the WAR file.
