@@ -34,3 +34,9 @@ Run the tests. You must have a license in order to run the tests. Copy your
 license to `saxon-license.lic` and it will be mounted into the docker container.
 
     $ make test
+
+Run clean, build, test, and then bring the service down
+
+    $ make all
+
+## Pushing updates to the master branch will run make all and if sucessful it will relase a new version of the WAR file.
