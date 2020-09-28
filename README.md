@@ -7,8 +7,12 @@ Web service provides transformations from FGDC/RSE to ISO 19115-2.
 
 ## Usage
 
-Download the latest `fgdc2iso.war` from the [Releases](./releases) page. Install
-the war into Apache Tomcat's directory.
+When updates to the master branch are pushed to the repository, a github [action](/actions) will be run to
+build a new version of the WAR file, test it and if successful, tag and release it.
+
+Alternatively, this can be installed by downloadiung the latest `fgdc2iso.war`
+from the [Releases](/releases/latest) page or 'make build' and putting the
+WAR file into Apache Tomcat's webapps directory.
 
     mv fgdc2iso.war /opt/tomcat/webapps/
 
@@ -26,12 +30,13 @@ Make help
 
     $ make help
 
-Build the war file to `./build/fgdc2iso.war`.
+Build the WAR file to `./build/fgdc2iso.war`.
 
     $ make build
 
-Run the tests. You must have a license in order to run the tests. Copy your
-license to `saxon-license.lic` and it will be mounted into the docker container.
+Run the tests. You must have a license in order to run the tests. Copy the saxon
+license to a file named `saxon-license.lic` in the root directory and it will be copied into
+the docker container. The saxon license can be found in the [datagov-delopy](https://github.com/GSA/datagov-deploy/) Ansible vault.
 
     $ make test
 
@@ -39,4 +44,4 @@ Run clean, build, test, and then bring the service down
 
     $ make all
 
-## Pushing updates to the master branch will run make all and if sucessful it will relase a new version of the WAR file.
+## Pushing updates to the master branch will run 'make all' and if successful will tag and relase a new version of the WAR file.
