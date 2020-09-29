@@ -1,3 +1,2 @@
 .git* export-ignore
 .circleci export-ignore
-.drone* export-ignore
