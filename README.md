@@ -5,7 +5,6 @@
 Web service provides XML transformations from FGDC/RSE to ISO 19115-2 using the XSLT
 `./fgdc2iso/fgdcrse2iso19115-2.xslt`. 
 
-
 ## Usage
 
 When updates to the master branch are pushed to the repository, a github [action](https://github.com/GSA/datagov-deploy/actions) will be run to
@@ -23,7 +22,6 @@ POST your XML to the web service.
 
 If successful, the response will contain the transformed document. If
 unsuccessful, HTTP status 409 will be returned with an error message response.
-
 
 ## Development
 
