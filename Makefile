@@ -1,4 +1,4 @@
-.PHONY: clean build test
+.PHONY: clean build test down all help
 
 clean: ##Stop and remove containers and volumes
 	docker-compose down -v --remove-orphans --rmi local

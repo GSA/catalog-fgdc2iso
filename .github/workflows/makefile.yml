@@ -1,5 +1,5 @@
-# On pull request events, this workflow will run `make build-and-test`. 
-# On push events to the main branch, this workflow will upload a date-named release 
+# On push events to the master branch, this workflow will build, test, and create a release
+# of the fgdc2iso WAR file.
 
 name: 'Test and (Maybe) Release'
 
