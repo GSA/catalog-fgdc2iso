@@ -34,11 +34,14 @@ Build the WAR file to `./build/fgdc2iso.war`.
     $ make build
 
 Run the tests. You must have a license in order to run the tests. Copy the saxon
-license to a file named `saxon-license.lic` in the root directory and it will be copied into
-the docker container. The saxon license can be found in the [datagov-delopy](https://github.com/GSA/datagov-deploy/) Ansible vault.
+license to a file named `saxon-license.lic` in the root directory and it will be
+mounted in volume attached to the the docker container. The saxon license can be
+found in the [datagov-delopy](https://github.com/GSA/datagov-deploy/) Ansible vault.
+To remove the volume and containers after testing run `make clean`
 
     $ make test
 
 Run clean, build, test, and then bring the service down
+To remove the volume and containers after testing run `make clean`
 
     $ make all
