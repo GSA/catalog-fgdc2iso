@@ -1,4 +1,3 @@
 .git* export-ignore
 .circleci export-ignore
 .drone* export-ignore
-saxon-license.lic export-ignore
