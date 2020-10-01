@@ -6,7 +6,7 @@ name: 'Test and (Maybe) Release'
 on:
   push:
     branches:
-    - '**'
+    - 'feature/fgdc2iso-standalone'
 
 jobs:
   make:
@@ -34,7 +34,6 @@ jobs:
 
     - name: Bump version and push tag
       id: bump
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       uses: anothrNick/github-tag-action@1.26.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
