@@ -42,7 +42,6 @@ jobs:
         INITIAL_VERSION: 0.0.0
 
     - name: Release pushes to main
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       uses: softprops/action-gh-release@v1
       with:
         files: |
