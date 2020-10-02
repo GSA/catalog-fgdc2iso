@@ -2,18 +2,19 @@
 
 # catalog-fgdc2iso
 
-Web service provides transformations from FGDC/RSE to ISO 19115-2.
-
+Web service provides XML transformations from FGDC/RSE to ISO 19115-2 using the XSLT
+`./fgdc2iso/fgdcrse2iso19115-2.xslt`. 
 
 ## Usage
 
-Download the latest `fgdc2iso.war` from the [Releases](./releases) page. Install
-the war into Apache Tomcat's directory.
+When updates to the master branch are pushed to the repository, a github [action](https://github.com/GSA/datagov-deploy/actions) will be run to
+build a new version of the WAR file, test it, and if successful, tag and release it.
 
-    mv fgdc2iso.war /var/lib/tomcat8/webapps/
+Alternatively, the WAF file can be installed by downloadiung the latest `fgdc2iso.war`
+from the [Releases](https://github.com/GSA/catalog-fgdc2iso/releases/latest) page or from 'make build' and putting the
+WAR file into Apache Tomcat's webapps directory. The test XML file is included in the WAR file.
 
-Install the [SaxonPE](http://www.saxonica.com/download/java.xml) license file to
-`/etc/saxon-license.lic`.
+    mv fgdc2iso.war /opt/tomcat/webapps/
 
 POST your XML to the web service.
 
@@ -22,30 +23,25 @@ POST your XML to the web service.
 If successful, the response will contain the transformed document. If
 unsuccessful, HTTP status 409 will be returned with an error message response.
 
-
 ## Development
 
-Build the war file to `./build/fgdc2iso.war`.
+Make help
+
+    $ make help
+
+Build the WAR file to `./build/fgdc2iso.war`.
 
     $ make build
 
-Run the tests. You must have a license in order to run the tests. Copy your
-license to `saxon-license.lic` and it will be mounted into the docker container.
+Run the tests. You must have a license in order to run the tests. Copy the saxon
+license to a file named `saxon-license.lic` in the root directory and it will be
+mounted in volume attached to the the docker container. The saxon license can be
+found in the [datagov-delopy](https://github.com/GSA/datagov-deploy/) Ansible vault.
+To remove the volume and containers after testing run `make clean`
 
     $ make test
 
+Run clean, build, test, and then bring the service down
+To remove the volume and containers after testing run `make clean`
 
-### Continuous Integration
-
-Because testing requires the license, you must add your license file as
-a secret. The easiest way to do this is to add a single environment variable,
-`SAXONPE_LICENSE` with your newline-encoded your license. During the CI build,
-you can write out the license with `printf`.
-
-Newline-encode your license (for LF systems) with GNU sed.
-
-   $ sed -z -e 's/\n/\\n/g' saxon-license.lic
-
-...or with BSD.
-
-   $ paste -s -d'!' saxon-license.lic | sed -e 's/!/\\n/g'
+    $ make all
