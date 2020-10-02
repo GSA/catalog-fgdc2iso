@@ -6,7 +6,7 @@ name: 'Test and (Maybe) Release'
 on:
   push:
     branches:
-    - 'feature/fgdc2iso-standalone'
+    - 'master'
 
 jobs:
   make:
