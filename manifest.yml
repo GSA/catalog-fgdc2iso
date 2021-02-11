@@ -1,0 +1,13 @@
+---
+applications:
+- name: ((app_name))
+  services:
+    - ((app_name))-secrets # cf cups ${app_name}-secrets -p <(jq -c --null-input --rawfile secret saxon-licence.lic.txt '{SAXON_LICENSE: $secret}')
+  buildpacks:
+    - java_buildpack
+  memory: 1G
+  # no-route: true
+  instances: ((instances))
+  health-check-type: port
+  disk_quota: 512M
+  timeout: 180

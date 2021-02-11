@@ -45,3 +45,28 @@ Run clean, build, test, and then bring the service down
 To remove the volume and containers after testing run `make clean`
 
     $ make all
+
+## Deploying to cloud.gov
+
+Copy the vars.yml.template and rename it to vars.yml.
+
+**For development**:
+
+Create a user-provided service secrets for the saxon-license:
+
+You will first need to get the saxon-license stored in the ansible-vault. Copy it to the root of the repo and rename it `saxon-licence.lic.txt`.
+
+Run this command to create the user-provided service:
+> `cf cups ${app_name}-secrets -p <(jq -c --null-input --rawfile secret saxon-licence.lic.txt '{SAXON_LICENSE: $secret}')`
+
+Create the app by running:
+> `cf push --vars-file vars.yml fgdc2iso -p build/fgdc2iso.war`
+
+Then, create an internal route:
+> `cf map-route ${app_name} apps.internal --hostname ${app_name}-dev-data-gov`
+
+**For staging**:
+`cf map-route ${app_name} ${route} --hostname ${app_name}-stage-data-gov`
+
+**For prod**:
+`cf map-route ${app_name} ${route} --hostname ${app_name}-prod-data-gov`
