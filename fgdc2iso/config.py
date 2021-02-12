@@ -1,5 +1,5 @@
 import os
 
-defualt_xslt = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+default_xslt = os.path.join(
+    os.getcwd(),
     'fgdcrse2iso19115-2.xslt')

@@ -5,7 +5,8 @@ applications:
     - ((app_name))-secrets # cf cups ${app_name}-secrets -p <(jq -c --null-input --rawfile secret saxon-licence.lic.txt '{SAXON_LICENSE: $secret}')
   buildpacks:
     - java_buildpack
-  memory: 1G
+  memory: 0.75G
+  routes: ((routes))
   # no-route: true
   instances: ((instances))
   health-check-type: port

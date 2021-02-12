@@ -54,19 +54,16 @@ Copy the vars.yml.template and rename it to vars.yml.
 
 Create a user-provided service secrets for the saxon-license:
 
-You will first need to get the saxon-license stored in the ansible-vault. Copy it to the root of the repo and rename it `saxon-licence.lic.txt`.
+Confirm if the space has the necessary secrets by running:
+> `cf service ${app_name}-secrets`
 
-Run this command to create the user-provided service:
-> `cf cups ${app_name}-secrets -p <(jq -c --null-input --rawfile secret saxon-licence.lic.txt '{SAXON_LICENSE: $secret}')`
+If the above service does not exist, you will need to get the saxon-license stored in the ansible-vault or from the catalog-fgdc2iso server. Copy it to the root of the repo and rename it `saxon-licence.lic.txt`.
+
+Encode the saxon-license and write it to a new file;
+`base64 saxon-license.lic > saxon-encoded.txt`
+
+Then create the user-provided service substituting ${app-name} for your application's name in vars.yml:
+> `cf cups ${app_name}-secrets -p <(jq -c --null-input --rawfile secret saxon-encoded.txt '{SAXON_LICENSE: $secret}')`
 
 Create the app by running:
 > `cf push --vars-file vars.yml fgdc2iso -p build/fgdc2iso.war`
-
-Then, create an internal route:
-> `cf map-route ${app_name} apps.internal --hostname ${app_name}-dev-data-gov`
-
-**For staging**:
-`cf map-route ${app_name} ${route} --hostname ${app_name}-stage-data-gov`
-
-**For prod**:
-`cf map-route ${app_name} ${route} --hostname ${app_name}-prod-data-gov`
