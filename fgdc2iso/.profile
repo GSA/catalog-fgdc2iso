@@ -17,6 +17,3 @@ encoded_license=$(echo $VCAP_SERVICES | jq -r '.[] | .[] | .credentials | .SAXON
 
 # decode the env variable
 echo $encoded_license | base64 -di > $SAXON_LICENSE_FILE
-
-echo 'FIND THE FILE HERE:'
-echo $
