@@ -7,3 +7,5 @@ services:
       - "8080:8080"
     volumes:
       - ./saxon-license.lic:/etc/saxon-license.lic
+    environment:
+      SAXON_LICENSE_FILE: /etc/saxon-license.lic

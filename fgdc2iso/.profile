@@ -10,7 +10,7 @@ set -o errexit
 set -o pipefail
 
 mkdir /home/vcap/tmp/license
-SAXON_LICENSE_FILE=/home/vcap/tmp/license/saxon-license.lic
+export SAXON_LICENSE_FILE=/home/vcap/tmp/license/saxon-license.lic
 
 # get saxon license from cups secret
 encoded_license=$(echo $VCAP_SERVICES | jq -r '.[] | .[] | .credentials | .SAXON_LICENSE')
