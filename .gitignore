@@ -1,2 +1,7 @@
 build
 saxon-license.lic
+
+# cloud.gov development
+vars.yml
+saxon-license.lic.txt
+saxon-encoded.txt

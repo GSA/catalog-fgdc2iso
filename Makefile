@@ -8,6 +8,7 @@ build:  ##Build the fgdc2iso war file and build and run TomCat container with ne
 	docker-compose build
 	docker-compose run --rm -v $(PWD)/build:/build app bash -c 'cp $${TOMCAT_WEBAPPS_DIR}/fgdc2iso.war /build/'
 
+
 test: ##Build the test container and run bats test
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml build
 	docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit test
@@ -24,4 +25,3 @@ help: ##Show this help message
 	@printf "\nUsage : make <commands> \n\nThe following commands are available :"
 	@awk 'BEGIN {FS = ":.*##"; printf "\n"} /^[a-zA-Z_-]+:.*?##/ { printf "%s:\t%s\n", $$1, $$2 } /^##@/' $(MAKEFILE_LIST)
 	@printf "\n"
-

@@ -29,7 +29,7 @@ _transform = None
 rlock = threading.RLock()
 
 
-def transform(xmldoc, xslt=config.defualt_xslt):
+def transform(xmldoc, xslt=config.default_xslt):
     '''
     Runs the transform from the specified xslt against the provided
     document.  The transformer is only loaded on the first run and
@@ -39,7 +39,10 @@ def transform(xmldoc, xslt=config.defualt_xslt):
 
     if _transform is None:
         tFactory = TransformerFactory.newInstance()
-        tFactory.setAttribute('http://saxon.sf.net/feature/licenseFileLocation', '/etc/saxon-license.lic')
+        SAXON_LICENSE_FILE = os.getenv('SAXON_LICENSE_FILE',
+                                       default='/home/vcap/tmp/license/saxon-license.lic')
+        tFactory.setAttribute('http://saxon.sf.net/feature/licenseFileLocation',
+                              SAXON_LICENSE_FILE)
         try:
             _transform = tFactory.newTransformer(StreamSource(JavaFile(xslt)))
         except TransformerConfigurationException, tce:

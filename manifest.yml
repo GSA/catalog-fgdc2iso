@@ -1,0 +1,14 @@
+---
+applications:
+- name: ((app_name))
+  services:
+    - ((app_name))-secrets
+  buildpacks:
+    - java_buildpack
+  # Idle sits at 215M, 512M is not enough memory for startup
+  memory: 0.75GB
+  routes: ((routes))
+  instances: ((instances))
+  health-check-type: port
+  disk_quota: 512M
+  timeout: 180

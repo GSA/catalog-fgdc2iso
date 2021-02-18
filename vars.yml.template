@@ -1,0 +1,12 @@
+# Copy this file to vars.yml and then edit in your own values here
+
+# This is the name to use for the fgdc2iso app in Cloud Foundry. You might want to customize this
+# (eg "fgdc2iso-<yourname>") to avoid collisions with others are also working on 
+# dashboard in the same space.
+app_name: fgdc2iso
+
+# Number of application instances to run in cloud.gov
+instances: 1
+
+routes:
+  - route: fgdc2iso-dev.apps.internal
