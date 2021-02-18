@@ -41,7 +41,6 @@ def transform(xmldoc, xslt=config.default_xslt):
         tFactory = TransformerFactory.newInstance()
         SAXON_LICENSE_FILE = os.getenv('SAXON_LICENSE_FILE',
                                        default='/home/vcap/tmp/license/saxon-license.lic')
-        print('license file: ' + SAXON_LICENSE_FILE)
         tFactory.setAttribute('http://saxon.sf.net/feature/licenseFileLocation',
                               SAXON_LICENSE_FILE)
         try:
