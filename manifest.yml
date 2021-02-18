@@ -2,12 +2,12 @@
 applications:
 - name: ((app_name))
   services:
-    - ((app_name))-secrets # cf cups ${app_name}-secrets -p <(jq -c --null-input --rawfile secret saxon-licence.lic.txt '{SAXON_LICENSE: $secret}')
+    - ((app_name))-secrets
   buildpacks:
     - java_buildpack
-  memory: 0.75G
+  # Idle sits at 215M, may need to bump for high usage
+  memory: 256M
   routes: ((routes))
-  # no-route: true
   instances: ((instances))
   health-check-type: port
   disk_quota: 512M

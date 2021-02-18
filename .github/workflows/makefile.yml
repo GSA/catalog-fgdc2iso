@@ -5,12 +5,10 @@ name: 'Test and (Maybe) Release'
 
 on:
   push:
-    branches:
-    - 'master'
 
 jobs:
-  make:
-    name: 'Make'
+  test:
+    name: 'Test'
     runs-on: ubuntu-latest
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -31,7 +29,98 @@ jobs:
 
     - name: Build and run tests
       run: make all
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: war-file
+        path: build/fgdc2iso.war
+        if-no-files-found: error
+  
+  deploy-development:
+    if: github.ref == 'refs/heads/develop'
+    name: deploy (development)
+    environment: development
+    runs-on: ubuntu-latest
+    needs: test
 
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: war-file
+          path: build
+      - name: deploy
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push fgdc2iso --vars-file vars.development.yml -p build/fgdc2iso.war --strategy rolling
+          org: gsa-datagov
+          space: development
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+  
+  deploy-staging:
+    if: github.ref == 'refs/heads/main'
+    name: deploy (staging)
+    environment: staging
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: war-file
+          path: build
+      - name: deploy
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push fgdc2iso --vars-file vars.development.yml -p build/fgdc2iso.war --strategy rolling
+          org: gsa-datagov
+          space: staging
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    name: deploy (production)
+    environment: development
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: war-file
+          path: build
+      - name: deploy
+        uses: usds/cloud-gov-cli@master
+        with:
+          command: push fgdc2iso --vars-file vars.development.yml -p build/fgdc2iso.war --strategy rolling
+          org: gsa-datagov
+          space: prod
+          user: ${{secrets.CF_SERVICE_USER}}
+          password: ${{secrets.CF_SERVICE_AUTH}}
+  
+  publish-war:
+    if: github.ref == 'refs/heads/main'
+    name: 'Publish War File'
+    runs-on: ubuntu-latest
+    needs: test
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    # Checkout the repository to the GitHub Actions runner
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: war-file
+        path: build
     - name: Bump version and push tag
       id: bump
       uses: anothrNick/github-tag-action@1.26.0
