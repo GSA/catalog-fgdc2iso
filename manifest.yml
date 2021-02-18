@@ -5,8 +5,8 @@ applications:
     - ((app_name))-secrets
   buildpacks:
     - java_buildpack
-  # Idle sits at 215M, may need to bump for high usage
-  memory: 256M
+  # Idle sits at 215M, 512M is not enough memory for startup
+  memory: 0.75GB
   routes: ((routes))
   instances: ((instances))
   health-check-type: port

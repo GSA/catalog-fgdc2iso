@@ -1,4 +1,4 @@
-# On push events to the master branch, this workflow will build, test, and create a release
+# On push events to the main branch, this workflow will build, test, and create a release
 # of the fgdc2iso WAR file.
 
 name: 'Test and (Maybe) Release'
