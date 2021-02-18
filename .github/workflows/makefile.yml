@@ -76,7 +76,7 @@ jobs:
       - name: deploy
         uses: usds/cloud-gov-cli@master
         with:
-          command: push fgdc2iso --vars-file vars.development.yml -p build/fgdc2iso.war --strategy rolling
+          command: push fgdc2iso --vars-file vars.staging.yml -p build/fgdc2iso.war --strategy rolling
           org: gsa-datagov
           space: staging
           user: ${{secrets.CF_SERVICE_USER}}
@@ -98,7 +98,7 @@ jobs:
       - name: deploy
         uses: usds/cloud-gov-cli@master
         with:
-          command: push fgdc2iso --vars-file vars.development.yml -p build/fgdc2iso.war --strategy rolling
+          command: push fgdc2iso --vars-file vars.production.yml -p build/fgdc2iso.war --strategy rolling
           org: gsa-datagov
           space: prod
           user: ${{secrets.CF_SERVICE_USER}}
@@ -117,6 +117,10 @@ jobs:
 
     # Checkout the repository to the GitHub Actions runner
     steps:
+    - uses: actions/checkout@v2
+      with: 
+        fetch-depth: '0'
+
     - uses: actions/download-artifact@v2
       with:
         name: war-file
