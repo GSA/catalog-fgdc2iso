@@ -10,7 +10,7 @@ Web service provides XML transformations from FGDC/RSE to ISO 19115-2 using the 
 When updates to the master branch are pushed to the repository, a github [action](https://github.com/GSA/datagov-deploy/actions) will be run to
 build a new version of the WAR file, test it, and if successful, tag and release it.
 
-Alternatively, the WAF file can be installed by downloadiung the latest `fgdc2iso.war`
+Alternatively, the WAF file can be installed by downloading the latest `fgdc2iso.war`
 from the [Releases](https://github.com/GSA/catalog-fgdc2iso/releases/latest) page or from 'make build' and putting the
 WAR file into Apache Tomcat's webapps directory. The test XML file is included in the WAR file.
 
