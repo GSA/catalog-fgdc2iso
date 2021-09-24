@@ -1,4 +1,4 @@
-FROM tomcat:jdk11-openjdk
+FROM tomcat:9-jdk11-openjdk
 
 ARG JYTHON_VERSION=2.7.2
 #ARG SAXONPE_VERSION=9-9-1-5J
